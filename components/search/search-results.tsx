@@ -8,7 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { SearchResult } from "@/lib/search";
+import type { SearchResult } from "@/lib/search-types";
+import { computeGradeText } from "@/lib/grade";
 import { useState } from "react";
 import { OierDialog } from "@/components/oier/oier-dialog";
 
@@ -33,26 +34,26 @@ export function SearchResults({ results }: { results: SearchResult[] }) {
           </TableHeader>
           <TableBody>
             {results.map((r) => (
-              <TableRow key={r.id}>
+              <TableRow key={r.uid}>
                 <TableCell className="text-muted-foreground">{r.id}</TableCell>
                 <TableCell>
                   <button
                     type="button"
                     className="text-primary hover:underline cursor-pointer"
                     onClick={() => {
-                      setUid(r.id);
+                      setUid(r.uid);
                       setOpen(true);
                     }}
                   >
                     {r.name}
                   </button>
                 </TableCell>
-                <TableCell>{r.province}</TableCell>
-                <TableCell>{r.grade}</TableCell>
+                <TableCell>{r.province ?? "-"}</TableCell>
+                <TableCell>{computeGradeText(r.enroll_middle)}</TableCell>
                 <TableCell className="font-mono">
-                  {r.score.toFixed(2)}
+                  {r.oierdb_score != null ? r.oierdb_score.toFixed(2) : "-"}
                 </TableCell>
-                <TableCell className="font-mono">{r.ccf}</TableCell>
+                <TableCell className="font-mono">{r.ccf_level ?? "-"}</TableCell>
               </TableRow>
             ))}
           </TableBody>

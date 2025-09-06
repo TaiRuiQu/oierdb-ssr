@@ -1,5 +1,5 @@
 import { SearchResults } from "@/components/search/search-results";
-import { searchServer } from "@/lib/search";
+import { searchServer } from "@/lib/search-server";
 
 export async function SearchResultsWrapper({
   query,

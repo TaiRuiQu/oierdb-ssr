@@ -4,235 +4,238 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[];
+  | Json[]
 
 export type Database = {
   // Allows to automatically instantiate createClient with right options
   // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
-    PostgrestVersion: "13.0.4";
-  };
+    PostgrestVersion: "13.0.4"
+  }
   graphql_public: {
     Tables: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
       graphql: {
         Args: {
-          extensions?: Json;
-          operationName?: string;
-          query?: string;
-          variables?: Json;
-        };
-        Returns: Json;
-      };
-    };
+          extensions?: Json
+          operationName?: string
+          query?: string
+          variables?: Json
+        }
+        Returns: Json
+      }
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
+      [_ in never]: never
+    }
+  }
   public: {
     Tables: {
       contest: {
         Row: {
-          capacity: number | null;
-          created_at: string;
-          fall_semester: boolean;
-          full_score: number;
-          id: number;
-          name: string;
-          type: Database["public"]["Enums"]["contest_type_enum"];
-          updated_at: string;
-          year: number;
-        };
+          capacity: number | null
+          created_at: string
+          fall_semester: boolean
+          full_score: number
+          id: number
+          name: string
+          type: Database["public"]["Enums"]["contest_type_enum"]
+          updated_at: string
+          year: number
+        }
         Insert: {
-          capacity?: number | null;
-          created_at?: string;
-          fall_semester: boolean;
-          full_score: number;
-          id: number;
-          name: string;
-          type: Database["public"]["Enums"]["contest_type_enum"];
-          updated_at?: string;
-          year: number;
-        };
+          capacity?: number | null
+          created_at?: string
+          fall_semester: boolean
+          full_score: number
+          id: number
+          name: string
+          type: Database["public"]["Enums"]["contest_type_enum"]
+          updated_at?: string
+          year: number
+        }
         Update: {
-          capacity?: number | null;
-          created_at?: string;
-          fall_semester?: boolean;
-          full_score?: number;
-          id?: number;
-          name?: string;
-          type?: Database["public"]["Enums"]["contest_type_enum"];
-          updated_at?: string;
-          year?: number;
-        };
-        Relationships: [];
-      };
+          capacity?: number | null
+          created_at?: string
+          fall_semester?: boolean
+          full_score?: number
+          id?: number
+          name?: string
+          type?: Database["public"]["Enums"]["contest_type_enum"]
+          updated_at?: string
+          year?: number
+        }
+        Relationships: []
+      }
       oier: {
         Row: {
-          ccf_level: number | null;
-          ccf_score: number | null;
-          created_at: string;
-          enroll_middle: number | null;
-          gender: Database["public"]["Enums"]["gender_enum"];
-          id: number;
-          identifier: string;
-          initials: string | null;
-          name: string;
-          oierdb_score: number | null;
-          uid: number;
-          updated_at: string;
-        };
+          ccf_level: number | null
+          ccf_score: number | null
+          created_at: string
+          enroll_middle: number | null
+          gender: Database["public"]["Enums"]["gender_enum"]
+          id: number
+          identifier: string
+          initials: string | null
+          name: string
+          oierdb_score: number | null
+          province: Database["public"]["Enums"]["province_enum"] | null
+          uid: number
+          updated_at: string
+        }
         Insert: {
-          ccf_level?: number | null;
-          ccf_score?: number | null;
-          created_at?: string;
-          enroll_middle?: number | null;
-          gender?: Database["public"]["Enums"]["gender_enum"];
-          id?: number;
-          identifier: string;
-          initials?: string | null;
-          name: string;
-          oierdb_score?: number | null;
-          uid: number;
-          updated_at?: string;
-        };
+          ccf_level?: number | null
+          ccf_score?: number | null
+          created_at?: string
+          enroll_middle?: number | null
+          gender?: Database["public"]["Enums"]["gender_enum"]
+          id?: number
+          identifier: string
+          initials?: string | null
+          name: string
+          oierdb_score?: number | null
+          province?: Database["public"]["Enums"]["province_enum"] | null
+          uid: number
+          updated_at?: string
+        }
         Update: {
-          ccf_level?: number | null;
-          ccf_score?: number | null;
-          created_at?: string;
-          enroll_middle?: number | null;
-          gender?: Database["public"]["Enums"]["gender_enum"];
-          id?: number;
-          identifier?: string;
-          initials?: string | null;
-          name?: string;
-          oierdb_score?: number | null;
-          uid?: number;
-          updated_at?: string;
-        };
-        Relationships: [];
-      };
+          ccf_level?: number | null
+          ccf_score?: number | null
+          created_at?: string
+          enroll_middle?: number | null
+          gender?: Database["public"]["Enums"]["gender_enum"]
+          id?: number
+          identifier?: string
+          initials?: string | null
+          name?: string
+          oierdb_score?: number | null
+          province?: Database["public"]["Enums"]["province_enum"] | null
+          uid?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       record: {
         Row: {
-          contest_id: number;
-          created_at: string;
-          em_override_year: number | null;
-          gender: Database["public"]["Enums"]["gender_enum"];
-          grades_mask: number;
-          id: number;
-          keep_grade_flag: boolean;
-          level: Database["public"]["Enums"]["award_level_enum"] | null;
-          oier_id: number;
-          province: Database["public"]["Enums"]["province_enum"];
-          rank: number;
-          school_id: number;
-          score: number | null;
-          updated_at: string;
-        };
+          contest_id: number
+          created_at: string
+          em_override_year: number | null
+          gender: Database["public"]["Enums"]["gender_enum"]
+          grades_mask: number
+          id: number
+          keep_grade_flag: boolean
+          level: Database["public"]["Enums"]["award_level_enum"] | null
+          oier_id: number
+          province: Database["public"]["Enums"]["province_enum"]
+          rank: number
+          school_id: number
+          score: number | null
+          updated_at: string
+        }
         Insert: {
-          contest_id: number;
-          created_at?: string;
-          em_override_year?: number | null;
-          gender: Database["public"]["Enums"]["gender_enum"];
-          grades_mask: number;
-          id?: number;
-          keep_grade_flag?: boolean;
-          level?: Database["public"]["Enums"]["award_level_enum"] | null;
-          oier_id: number;
-          province: Database["public"]["Enums"]["province_enum"];
-          rank: number;
-          school_id: number;
-          score?: number | null;
-          updated_at?: string;
-        };
+          contest_id: number
+          created_at?: string
+          em_override_year?: number | null
+          gender: Database["public"]["Enums"]["gender_enum"]
+          grades_mask: number
+          id?: number
+          keep_grade_flag?: boolean
+          level?: Database["public"]["Enums"]["award_level_enum"] | null
+          oier_id: number
+          province: Database["public"]["Enums"]["province_enum"]
+          rank: number
+          school_id: number
+          score?: number | null
+          updated_at?: string
+        }
         Update: {
-          contest_id?: number;
-          created_at?: string;
-          em_override_year?: number | null;
-          gender?: Database["public"]["Enums"]["gender_enum"];
-          grades_mask?: number;
-          id?: number;
-          keep_grade_flag?: boolean;
-          level?: Database["public"]["Enums"]["award_level_enum"] | null;
-          oier_id?: number;
-          province?: Database["public"]["Enums"]["province_enum"];
-          rank?: number;
-          school_id?: number;
-          score?: number | null;
-          updated_at?: string;
-        };
+          contest_id?: number
+          created_at?: string
+          em_override_year?: number | null
+          gender?: Database["public"]["Enums"]["gender_enum"]
+          grades_mask?: number
+          id?: number
+          keep_grade_flag?: boolean
+          level?: Database["public"]["Enums"]["award_level_enum"] | null
+          oier_id?: number
+          province?: Database["public"]["Enums"]["province_enum"]
+          rank?: number
+          school_id?: number
+          score?: number | null
+          updated_at?: string
+        }
         Relationships: [
           {
-            foreignKeyName: "record_contest_id_fkey";
-            columns: ["contest_id"];
-            isOneToOne: false;
-            referencedRelation: "contest";
-            referencedColumns: ["id"];
+            foreignKeyName: "record_contest_id_fkey"
+            columns: ["contest_id"]
+            isOneToOne: false
+            referencedRelation: "contest"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "record_oier_id_fkey";
-            columns: ["oier_id"];
-            isOneToOne: false;
-            referencedRelation: "oier";
-            referencedColumns: ["id"];
+            foreignKeyName: "record_oier_id_fkey"
+            columns: ["oier_id"]
+            isOneToOne: false
+            referencedRelation: "oier"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "record_school_id_fkey";
-            columns: ["school_id"];
-            isOneToOne: false;
-            referencedRelation: "school";
-            referencedColumns: ["id"];
-          }
-        ];
-      };
+            foreignKeyName: "record_school_id_fkey"
+            columns: ["school_id"]
+            isOneToOne: false
+            referencedRelation: "school"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       school: {
         Row: {
-          aliases: string[];
-          city: string | null;
-          created_at: string;
-          id: number;
-          name: string;
-          province: Database["public"]["Enums"]["province_enum"];
-          score: number;
-          updated_at: string;
-        };
+          aliases: string[]
+          city: string | null
+          created_at: string
+          id: number
+          name: string
+          province: Database["public"]["Enums"]["province_enum"]
+          score: number
+          updated_at: string
+        }
         Insert: {
-          aliases?: string[];
-          city?: string | null;
-          created_at?: string;
-          id?: number;
-          name: string;
-          province: Database["public"]["Enums"]["province_enum"];
-          score?: number;
-          updated_at?: string;
-        };
+          aliases?: string[]
+          city?: string | null
+          created_at?: string
+          id?: number
+          name: string
+          province: Database["public"]["Enums"]["province_enum"]
+          score?: number
+          updated_at?: string
+        }
         Update: {
-          aliases?: string[];
-          city?: string | null;
-          created_at?: string;
-          id?: number;
-          name?: string;
-          province?: Database["public"]["Enums"]["province_enum"];
-          score?: number;
-          updated_at?: string;
-        };
-        Relationships: [];
-      };
-    };
+          aliases?: string[]
+          city?: string | null
+          created_at?: string
+          id?: number
+          name?: string
+          province?: Database["public"]["Enums"]["province_enum"]
+          score?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+    }
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
       award_level_enum:
         | "金牌"
@@ -246,7 +249,7 @@ export type Database = {
         | "国际铜牌"
         | "前5%"
         | "前15%"
-        | "前25%";
+        | "前25%"
       contest_type_enum:
         | "APIO"
         | "CSP入门"
@@ -260,8 +263,8 @@ export type Database = {
         | "NOIP提高"
         | "NOIP普及"
         | "NOIST"
-        | "WC";
-      gender_enum: "unknown" | "male" | "female";
+        | "WC"
+      gender_enum: "unknown" | "male" | "female"
       province_enum:
         | "安徽"
         | "北京"
@@ -296,133 +299,130 @@ export type Database = {
         | "香港"
         | "青海"
         | "西藏"
-        | "台湾";
-    };
+        | "台湾"
+    }
     CompositeTypes: {
-      [_ in never]: never;
-    };
-  };
-};
+      [_ in never]: never
+    }
+  }
+}
 
-type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
 
-type DefaultSchema = DatabaseWithoutInternals[Extract<
-  keyof Database,
-  "public"
->];
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
 export type Tables<
   DefaultSchemaTableNameOrOptions extends
     | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
         DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
-    : never = never
+    : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
       DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R;
+      Row: infer R
     }
     ? R
     : never
   : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
-      DefaultSchema["Views"])
-  ? (DefaultSchema["Tables"] &
-      DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-      Row: infer R;
-    }
-    ? R
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
     : never
-  : never;
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I;
+      Insert: infer I
     }
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-  ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-      Insert: infer I;
-    }
-    ? I
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
     : never
-  : never;
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
     | keyof DefaultSchema["Tables"]
     | { schema: keyof DatabaseWithoutInternals },
   TableName extends DefaultSchemaTableNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U;
+      Update: infer U
     }
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-  ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-      Update: infer U;
-    }
-    ? U
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
     : never
-  : never;
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
     | keyof DefaultSchema["Enums"]
     | { schema: keyof DatabaseWithoutInternals },
   EnumName extends DefaultSchemaEnumNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
-    : never = never
+    : never = never,
 > = DefaultSchemaEnumNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-  ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-  : never;
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
     | keyof DefaultSchema["CompositeTypes"]
     | { schema: keyof DatabaseWithoutInternals },
   CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
-    schema: keyof DatabaseWithoutInternals;
+    schema: keyof DatabaseWithoutInternals
   }
     ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-    : never = never
+    : never = never,
 > = PublicCompositeTypeNameOrOptions extends {
-  schema: keyof DatabaseWithoutInternals;
+  schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-  ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-  : never;
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
 
 export const Constants = {
   graphql_public: {
@@ -498,4 +498,4 @@ export const Constants = {
       ],
     },
   },
-} as const;
+} as const

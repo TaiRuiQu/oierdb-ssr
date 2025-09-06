@@ -26,13 +26,13 @@ type OierDialogProps = {
 };
 
 function getColor(x: number, total: number, reverse: boolean = false) {
-    if (reverse) x = total - x;
-    if (total === 0) return "text-muted-foreground";
-    const ratio = x / total;
-    if (ratio < 0.2) return "text-red-500";
-    if (ratio < 0.6) return "text-orange-500";
-    if (ratio < 0.8) return "text-yellow-500";
-    return "text-green-500";
+  if (reverse) x = total - x;
+  if (total === 0) return "text-muted-foreground";
+  const ratio = x / total;
+  if (ratio < 0.2) return "text-red-500";
+  if (ratio < 0.6) return "text-orange-500";
+  if (ratio < 0.8) return "text-yellow-500";
+  return "text-green-500";
 }
 
 export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
@@ -68,7 +68,6 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
               <Skeleton className="h-4 w-24" />
               <Skeleton className="h-4 w-24" />
             </div>
-            <Separator />
             <div className="space-y-2">
               {Array.from({ length: 4 }).map((_, i) => (
                 <Skeleton key={i} className="h-6 w-full" />
@@ -77,7 +76,7 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
           </div>
         ) : (
           <div className="space-y-4">
-            <div className="grid grid-cols-3 gap-3 text-sm">
+            <div className="grid grid-cols-3 gap-3 text-sm p-1">
               <div>
                 <div className="text-muted-foreground">年级</div>
                 <div className="font-medium">{detail.grade}</div>
@@ -91,8 +90,6 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
                 <div className="font-mono">{detail.ccfLevel ?? "-"}</div>
               </div>
             </div>
-
-            <Separator />
 
             <div>
               <Table>
@@ -113,24 +110,33 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
                       </TableCell>
                       <TableCell>{r.level ?? "-"}</TableCell>
                       <TableCell className="font-mono">
-                        <span className={getColor(r.score ?? 0, r.contestFullScore ?? 0)}>
-                            {r.score ?? "-"}
+                        <span
+                          className={getColor(
+                            r.score ?? 0,
+                            r.contestFullScore ?? 0
+                          )}
+                        >
+                          {r.score ?? "-"}
                         </span>
                         <span className="text-muted-foreground ml-1 text-xs">
                           /{r.contestFullScore ?? "-"}
                         </span>
                       </TableCell>
                       <TableCell className="font-mono">
-                        <span className={getColor(r.rank ?? 0, r.contestCapacity ?? 0, true)}>
-                            {r.rank ?? "-"}
+                        <span
+                          className={getColor(
+                            r.rank ?? 0,
+                            r.contestCapacity ?? 0,
+                            true
+                          )}
+                        >
+                          {r.rank ?? "-"}
                         </span>
                         <span className="text-muted-foreground ml-1 text-xs">
-                            /{r.contestCapacity ?? "-"}
+                          /{r.contestCapacity ?? "-"}
                         </span>
                       </TableCell>
-                      <TableCell>
-                        {r.schoolName ?? "-"}
-                      </TableCell>
+                      <TableCell>{r.schoolName ?? "-"}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

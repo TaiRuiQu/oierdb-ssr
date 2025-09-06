@@ -1,6 +1,7 @@
 import { z } from "zod";
 import supabase from "@/lib/db";
-import { computeGradeText } from "@/lib/search";
+import { computeGradeText } from "@/lib/grade";
+import { unstable_cache } from "next/cache";
 
 export type OierRecordItem = {
   id: number;
@@ -62,7 +63,7 @@ const DetailRowSchema = z.object({
     .optional(),
 });
 
-export async function fetchOierDetailByUid(uid: number): Promise<OierDetail | null> {
+async function fetchOierDetailByUidUncached(uid: number): Promise<OierDetail | null> {
   const { data, error } = await supabase
     .from("oier")
     .select(
@@ -120,5 +121,11 @@ export async function fetchOierDetailByUid(uid: number): Promise<OierDetail | nu
     records,
   };
 }
+
+export const fetchOierDetailByUid = unstable_cache(
+  async (uid: number) => fetchOierDetailByUidUncached(uid),
+  ["fetchOierDetailByUid"],
+  { revalidate: 300 }
+);
 
 
