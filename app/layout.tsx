@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/site/navbar";
@@ -27,7 +28,9 @@ export default function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${ggiestMono.variable}`}>
       <body className={`${geistSans.className} antialiased`}>
         <Navbar />
-        <main className="mx-auto w-full max-w-4xl">{children}</main>
+        <main className="mx-auto w-full max-w-4xl">
+          <Suspense fallback={null}>{children}</Suspense>
+        </main>
         <Footer />
       </body>
     </html>

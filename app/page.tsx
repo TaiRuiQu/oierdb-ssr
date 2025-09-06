@@ -16,7 +16,9 @@ export default async function Home(props: PageProps) {
 
   return (
     <div className="space-y-6">
-      <SearchForm />
+      <Suspense fallback={null}>
+        <SearchForm />
+      </Suspense>
       <Suspense key={query} fallback={<SearchResultsSkeleton />}>
         <SearchResultsWrapper query={query} />
       </Suspense>
