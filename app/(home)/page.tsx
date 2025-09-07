@@ -4,7 +4,7 @@ import { SearchResultsSkeleton } from "@/components/search/search-results-skelet
 import { SearchResultsWrapper } from "@/components/search/search-results-wrapper";
 import Faq from "@/components/site/faq";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

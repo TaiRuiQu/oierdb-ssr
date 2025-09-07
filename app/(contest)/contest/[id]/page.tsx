@@ -8,7 +8,7 @@ import { GradeSelect } from "@/components/search/grade-select";
 
 type Params = { id: string };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 type PageProps = {
   params: Promise<Params>;

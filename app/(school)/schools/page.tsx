@@ -22,7 +22,7 @@ import { SchoolListSkeleton } from "@/components/search/school-list-skeleton";
 import { ProvinceSelect } from "@/components/search/province-select";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "学校排名 - OIerDB SSR",
