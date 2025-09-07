@@ -21,6 +21,7 @@ import {
 import { computeGradeTextAtContest } from "@/lib/grade";
 import { OierDialog } from "@/components/oier/oier-dialog";
 import { usePathname, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 type RecordItem = {
   id: number;
@@ -32,6 +33,7 @@ type RecordItem = {
   rank: number | null;
   province: string | null;
   school_name: string | null;
+  school_id: number | null;
 };
 
 function getColor(x: number, total: number, reverse: boolean = false) {
@@ -134,7 +136,9 @@ export function RecordsTable({
                   </span>
                   <span className="text-muted-foreground ml-1 text-xs">/{fullScore}</span>
                 </TableCell>
-                <TableCell>{r.school_name ?? "-"}</TableCell>
+                <TableCell>
+                  <Link href={`/school/${r.school_id}`} className="hover:underline">{r.school_name ?? "-"}</Link>
+                </TableCell>
                 <TableCell>{r.province ?? "-"}</TableCell>
               </TableRow>
             ))}

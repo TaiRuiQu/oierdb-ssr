@@ -15,6 +15,7 @@ export type OierRecordItem = {
   rank: number | null;
   province: string | null;
   schoolName: string | null;
+  schoolId: number | null;
   contestId: number | null;
 };
 
@@ -47,6 +48,7 @@ const DetailRowSchema = z.object({
           .object({
             name: z.string(),
             province: z.union([z.string(), z.null()]).optional(),
+            id: z.number(),
           })
           .optional(),
         contest: z
@@ -72,7 +74,7 @@ async function fetchOierDetailByUidUncached(uid: number): Promise<OierDetail | n
       `uid,name,enroll_middle,oierdb_score,ccf_level,ccf_score,
        record:record(
         id,rank,level,score,province,
-        school:school(name,province),
+        school:school(name,province,id),
         contest:contest(year,fall_semester,name,full_score,capacity,type,id)
        )`
     )
@@ -111,6 +113,7 @@ async function fetchOierDetailByUidUncached(uid: number): Promise<OierDetail | n
     rank: r.rank ?? null,
     province: r.province ?? null,
     schoolName: r.school?.name ?? null,
+    schoolId: r.school?.id ?? null,
     contestId: r.contest?.id ?? null,
   }));
 

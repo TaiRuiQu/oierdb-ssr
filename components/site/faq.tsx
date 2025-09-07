@@ -6,7 +6,7 @@ export default async function Faq() {
       <h2 className="text-md">这是什么？</h2>
       <div className="text-sm text-neutral-500">
         这是一个信息学竞赛选手获奖记录并对学校进行排名的数据库。本网站数据与原
-        OIerDB 同步更新。
+        OIerDB 同步更新。如果你之前使用过原 OIerDB，那么你应该能很快上手使用。
       </div>
       <h2>这个网站有什么用？</h2>
       <div className="text-sm text-neutral-500">

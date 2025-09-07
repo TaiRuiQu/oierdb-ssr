@@ -137,7 +137,9 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
                           /{r.contestCapacity ?? "-"}
                         </span>
                       </TableCell>
-                      <TableCell>{r.schoolName ?? "-"}</TableCell>
+                      <TableCell>
+                        <Link href={`/school/${r.schoolId}`} className="hover:underline">{r.schoolName ?? "-"}</Link>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

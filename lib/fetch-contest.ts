@@ -11,6 +11,7 @@ export type ContestRecord = {
   rank: number | null;
   province: string | null;
   school_name: string | null;
+  school_id: number | null;
 };
 
 export type ContestDetail = {
@@ -101,7 +102,7 @@ async function listContestRecordsServerUncached(
     (hasGrade
       ? `oier:oier!inner(uid,name,enroll_middle)`
       : `oier:oier(uid,name,enroll_middle)`) +
-    `,school:school(name)`;
+    `,school:school(name,id)`;
 
   const countQueryBase = supabase
     .from("record")
@@ -175,6 +176,7 @@ async function listContestRecordsServerUncached(
     rank: (r.rank ?? null) as number | null,
     province: (r.province ?? null) as string | null,
     school_name: (r.school?.name ?? null) as string | null,
+    school_id: (r.school?.id ?? null) as number | null,
   }));
 
   return { items, total, totalPages, page, pageSize };
