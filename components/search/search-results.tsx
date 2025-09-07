@@ -35,7 +35,7 @@ export function SearchResults({ results }: { results: SearchResult[] }) {
           <TableBody>
             {results.map((r) => (
               <TableRow key={r.uid}>
-                <TableCell className="text-muted-foreground">{r.id}</TableCell>
+                <TableCell className="text-muted-foreground">{r.rank}</TableCell>
                 <TableCell>
                   <button
                     type="button"

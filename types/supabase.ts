@@ -41,6 +41,7 @@ export type Database = {
     Tables: {
       contest: {
         Row: {
+          awardees: number | null
           capacity: number | null
           created_at: string
           fall_semester: boolean
@@ -52,6 +53,7 @@ export type Database = {
           year: number
         }
         Insert: {
+          awardees?: number | null
           capacity?: number | null
           created_at?: string
           fall_semester: boolean
@@ -63,6 +65,7 @@ export type Database = {
           year: number
         }
         Update: {
+          awardees?: number | null
           capacity?: number | null
           created_at?: string
           fall_semester?: boolean
@@ -88,6 +91,8 @@ export type Database = {
           name: string
           oierdb_score: number | null
           province: Database["public"]["Enums"]["province_enum"] | null
+          rank: number
+          schools: number[]
           uid: number
           updated_at: string
         }
@@ -103,6 +108,8 @@ export type Database = {
           name: string
           oierdb_score?: number | null
           province?: Database["public"]["Enums"]["province_enum"] | null
+          rank?: number
+          schools?: number[]
           uid: number
           updated_at?: string
         }
@@ -118,6 +125,8 @@ export type Database = {
           name?: string
           oierdb_score?: number | null
           province?: Database["public"]["Enums"]["province_enum"] | null
+          rank?: number
+          schools?: number[]
           uid?: number
           updated_at?: string
         }

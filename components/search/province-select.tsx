@@ -1,11 +1,12 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export function ProvinceSelect({ value }: { value?: string }) {
   const router = useRouter();
   const sp = useSearchParams();
+  const pathname = usePathname();
   const current = value ?? sp.get("province") ?? "all";
 
   function onValueChange(next: string) {
@@ -14,7 +15,7 @@ export function ProvinceSelect({ value }: { value?: string }) {
     else params.delete("province");
     params.delete("page");
     const s = params.toString();
-    router.push(s ? "/oiers?" + s : "/oiers");
+    router.push(s ? `${pathname}?${s}` : `${pathname}`);
   }
 
   return (

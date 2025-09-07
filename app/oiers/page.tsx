@@ -1,5 +1,6 @@
 import { Suspense } from "react";
-import { listOiersServer } from "@/lib/list-oiers-server";
+import { searchServer } from "@/lib/search-server";
+import type { SearchParams } from "@/lib/search-types";
 import { SearchResults } from "@/components/search/search-results";
 import { SearchResultsSkeleton } from "@/components/search/search-results-skeleton";
 import {
@@ -12,19 +13,31 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { ProvinceSelect } from "@/components/search/province-select";
+import { GradeSelect } from "@/components/search/grade-select";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "选手列表 - OIerDB SSR",
+};
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-async function Results({ page, province }: { page: number; province: string }) {
-  const results = await listOiersServer({ page, pageSize: 50, province });
+async function Results({ page, province, grade }: { page: number; province: string; grade: string }) {
+  const results = await searchServer({
+    page,
+    pageSize: 50,
+    province: province as SearchParams["province"],
+    grade: grade as SearchParams["grade"],
+  });
   const isPrevDisabled = page <= 1;
   const qp = (n?: number) => {
     const params = new URLSearchParams();
     if (province && province !== "all") params.set("province", province);
+    if (grade && grade !== "all") params.set("grade", grade);
     if (n && n > 1) params.set("page", String(n));
     const s = params.toString();
     return s ? `/oiers?${s}` : "/oiers";
@@ -90,15 +103,25 @@ export default async function OiersPage(props: PageProps) {
         : undefined;
     return raw && raw.trim() ? raw.trim() : "all";
   })();
+  const grade = (() => {
+    const raw =
+      typeof sp.grade === "string"
+        ? sp.grade
+        : Array.isArray(sp.grade)
+        ? sp.grade[0]
+        : undefined;
+    return raw && raw.trim() ? raw.trim() : "all";
+  })();
 
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <ProvinceSelect value={province} />
+        <GradeSelect value={grade} />
         <span className="text-lg">信息学竞赛选手排名</span>
       </div>
-      <Suspense key={`${page}-${province}`} fallback={<SearchResultsSkeleton />}>
-        <Results page={page} province={province} />
+      <Suspense key={`${page}-${province}-${grade}`} fallback={<SearchResultsSkeleton />}>
+        <Results page={page} province={province} grade={grade} />
       </Suspense>
     </div>
   );

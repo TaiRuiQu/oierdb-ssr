@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 type OierDialogProps = {
   open: boolean;
@@ -55,7 +56,7 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="!max-w-4xl" showCloseButton={false}>
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="px-0.5">
             {detail?.name ?? <Skeleton className="h-6 w-40" />}
           </DialogTitle>
         </DialogHeader>
@@ -105,8 +106,8 @@ export function OierDialog({ open, uid, onOpenChange }: OierDialogProps) {
                 <TableBody>
                   {detail.records.slice(0, 8).map((r) => (
                     <TableRow key={r.id}>
-                      <TableCell className="truncate" title={r.contestName}>
-                        {r.contestName}
+                      <TableCell className="truncate">
+                        <Link href={`/contest/${r.contestId}`} className="hover:underline">{r.contestName}</Link>
                       </TableCell>
                       <TableCell>{r.level ?? "-"}</TableCell>
                       <TableCell className="font-mono">

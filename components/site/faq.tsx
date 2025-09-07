@@ -1,4 +1,6 @@
-export function Faq() {
+"use server";
+
+export default async function Faq() {
   return (
     <div className="border rounded-sm p-4 space-y-2">
       <h2 className="text-md">这是什么？</h2>

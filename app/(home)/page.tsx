@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { SearchForm } from "@/components/search/search-form";
 import { SearchResultsSkeleton } from "@/components/search/search-results-skeleton";
 import { SearchResultsWrapper } from "@/components/search/search-results-wrapper";
-import { Faq } from "@/components/site/faq";
+import Faq from "@/components/site/faq";
 
 export const dynamic = "force-dynamic";
 
@@ -19,10 +19,12 @@ export default async function Home(props: PageProps) {
       <Suspense fallback={null}>
         <SearchForm />
       </Suspense>
-      <Suspense key={query} fallback={<SearchResultsSkeleton />}>
-        <SearchResultsWrapper query={query} />
-      </Suspense>
-      <Faq />
+      {query && (
+        <Suspense key={query} fallback={<SearchResultsSkeleton />}>
+          <SearchResultsWrapper query={query} />
+        </Suspense>
+      )}
+      {!query && <Faq />}
     </div>
   );
 }
