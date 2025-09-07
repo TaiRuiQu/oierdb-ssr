@@ -82,3 +82,30 @@ export function deriveEnrollMiddleFilterForGrade(
   }
 }
 
+export function deriveEnrollMiddleFilterForGradeAtContest(
+  grade: string | "all",
+  contestYear: number,
+  fallSemester: boolean
+): EnrollMiddleFilter | null {
+  if (!grade || grade === "all") return null;
+  const academicYearStart = contestYear - (fallSemester ? 0 : 1);
+  switch (grade) {
+    case "初一":
+      return { gte: academicYearStart };
+    case "初二":
+      return { eq: academicYearStart - 1 };
+    case "初三":
+      return { eq: academicYearStart - 2 };
+    case "高一":
+      return { eq: academicYearStart - 3 };
+    case "高二":
+      return { eq: academicYearStart - 4 };
+    case "高三":
+      return { eq: academicYearStart - 5 };
+    case "高中毕业":
+      return { lte: academicYearStart - 6 };
+    default:
+      return null;
+  }
+}
+

@@ -15,24 +15,24 @@ export function Navbar() {
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <Link href="/">
-              <NavigationMenuLink>Home</NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink asChild>
+              <Link href="/">Home</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/oiers">
-              <NavigationMenuLink>OIers</NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink asChild>
+              <Link href="/oiers">OIers</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/contests">
-              <NavigationMenuLink>Contests</NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink asChild>
+              <Link href="/contests">Contests</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <Link href="/schools">
-              <NavigationMenuLink>Schools</NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink asChild>
+              <Link href="/schools">Schools</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

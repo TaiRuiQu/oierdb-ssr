@@ -28,6 +28,8 @@ export default async function RecordsSection({
     pageSize: 50,
     province: province as any,
     grade: grade as any,
+    contestYear: year,
+    fallSemester,
   });
 
   return (

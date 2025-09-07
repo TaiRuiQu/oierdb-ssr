@@ -1,5 +1,6 @@
 import supabase from "@/lib/db";
 import { unstable_cache } from "next/cache";
+import { deriveEnrollMiddleFilterForGradeAtContest } from "@/lib/grade";
 
 export type ContestRecord = {
   id: number;
@@ -70,6 +71,8 @@ export type ListContestRecordsParams = {
     | "高二"
     | "高三"
     | "高中毕业";
+  contestYear?: number;
+  fallSemester?: boolean;
 };
 
 export type ListContestRecordsResponse = {
@@ -122,30 +125,19 @@ async function listContestRecordsServerUncached(
       query = query.eq("province", params.province);
     }
     if (hasGrade) {
-      const month = new Date().getMonth() + 1;
-      const academicYearStart = new Date().getFullYear() - (month < 9 ? 1 : 0);
-      switch (params.grade) {
-        case "初一":
-          query = query.gte("oier.enroll_middle", academicYearStart);
-          break;
-        case "初二":
-          query = query.eq("oier.enroll_middle", academicYearStart - 1);
-          break;
-        case "初三":
-          query = query.eq("oier.enroll_middle", academicYearStart - 2);
-          break;
-        case "高一":
-          query = query.eq("oier.enroll_middle", academicYearStart - 3);
-          break;
-        case "高二":
-          query = query.eq("oier.enroll_middle", academicYearStart - 4);
-          break;
-        case "高三":
-          query = query.eq("oier.enroll_middle", academicYearStart - 5);
-          break;
-        case "高中毕业":
-          query = query.lte("oier.enroll_middle", academicYearStart - 6);
-          break;
+      const gradeFilter = deriveEnrollMiddleFilterForGradeAtContest(
+        params.grade as any,
+        params.contestYear as number,
+        !!params.fallSemester
+      );
+      if (gradeFilter?.eq != null) {
+        query = query.eq("oier.enroll_middle", gradeFilter.eq);
+      }
+      if (gradeFilter?.gte != null) {
+        query = query.gte("oier.enroll_middle", gradeFilter.gte);
+      }
+      if (gradeFilter?.lte != null) {
+        query = query.lte("oier.enroll_middle", gradeFilter.lte);
       }
     }
     return query;
