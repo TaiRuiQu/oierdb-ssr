@@ -104,9 +104,11 @@ export function OierTable({
 
       <Pagination>
         <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href={prevHref} />
-          </PaginationItem>
+          {!isPrevDisabled && (
+            <PaginationItem>
+              <PaginationPrevious href={prevHref} />
+            </PaginationItem>
+          )}
           {pages[0] !== 1 && (
             <PaginationItem>
               <PaginationEllipsis />
@@ -124,9 +126,11 @@ export function OierTable({
               <PaginationEllipsis />
             </PaginationItem>
           )}
-          <PaginationItem>
-            <PaginationNext href={nextHref} />
-          </PaginationItem>
+          {!isNextDisabled && (
+            <PaginationItem>
+              <PaginationNext href={nextHref} />
+            </PaginationItem>
+          )}
         </PaginationContent>
       </Pagination>
 

@@ -90,9 +90,11 @@ async function Results({ page }: { page: number }) {
 
       <Pagination>
         <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href={prevHref} />
-          </PaginationItem>
+          {!isPrevDisabled && (
+            <PaginationItem>
+              <PaginationPrevious href={prevHref} />
+            </PaginationItem>
+          )}
           {pages[0] !== 1 && (
             <PaginationItem>
               <PaginationEllipsis />
@@ -113,9 +115,11 @@ async function Results({ page }: { page: number }) {
               <PaginationEllipsis />
             </PaginationItem>
           )}
-          <PaginationItem>
-            <PaginationNext href={nextHref} />
-          </PaginationItem>
+          {!isNextDisabled && (
+            <PaginationItem>
+              <PaginationNext href={nextHref} />
+            </PaginationItem>
+          )}
         </PaginationContent>
       </Pagination>
     </div>

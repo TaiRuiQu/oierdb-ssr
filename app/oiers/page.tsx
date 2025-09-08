@@ -52,9 +52,11 @@ async function Results({ page, province, grade }: { page: number; province: stri
       <SearchResults results={results} />
       <Pagination>
         <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href={prevHref} />
-          </PaginationItem>
+          {!isPrevDisabled && (
+            <PaginationItem>
+              <PaginationPrevious href={prevHref} />
+            </PaginationItem>
+          )}
           {pages[0] !== 1 && (
             <PaginationItem>
               <PaginationEllipsis />
