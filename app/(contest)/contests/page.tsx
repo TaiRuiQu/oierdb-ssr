@@ -21,7 +21,6 @@ import {
 import { ContestListSkeleton } from "@/components/search/contest-list-skeleton";
 import Link from "next/link";
 
-export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "比赛列表 - OIerDB SSR",

@@ -16,7 +16,6 @@ import { ProvinceSelect } from "@/components/search/province-select";
 import { GradeSelect } from "@/components/search/grade-select";
 import type { Metadata } from "next";
 
-export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "选手列表 - OIerDB SSR",

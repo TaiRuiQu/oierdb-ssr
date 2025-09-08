@@ -9,7 +9,6 @@ import AwardsSkeleton from "@/app/(school)/school/[id]/awards-skeleton";
 
 type Params = { id: string };
 
-export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "学校详情 - OIerDB SSR",
