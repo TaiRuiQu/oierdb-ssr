@@ -1,6 +1,6 @@
 "use cache";
 
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   title: "OIerDB SSR",
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -31,7 +36,7 @@ export default async function RootLayout({
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className={`${geistSans.className} antialiased`}>
         <Navbar />
-        <main className="mx-auto w-full max-w-4xl">
+        <main className="mx-auto w-full max-w-4xl px-4">
           <Suspense fallback={null}>{children}</Suspense>
         </main>
         <Footer />
